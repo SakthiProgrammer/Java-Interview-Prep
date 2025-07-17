@@ -47,7 +47,7 @@ If the steps are written clearly, the chef (computer) can successfully prepare t
 
 Humans can't directly understand machine code, so we use programming languages as a bridge to give instructions to computers in a way they can understand, using a compiler or interpreter.
 
-At the most basic level, computers only understand machine code, which is made up of zeros and ones (0 & 1), called binary code. Programming languages let us write instructions in a way that's easy for us to read, and then the compiler or interpreter translates them into binary so the computer can run them.
+At the most basic level, computers only understand machine code, which is made up of zeros and ones (0 & 1), called binary code. Programming languages let us write instructions in a way that's easy for us to read, and then the compiler or interpreter translates them into binary so the computer can run them..
 
 ### ✅ **Example (Java Program)**
 
