@@ -7,12 +7,13 @@
 | 2 | [Types of Programming Paradigms](#types-of-progamming-language-paradigms) | Procedural, Functional, OOP |
 | 3 | [Static vs Dynamic Languages](#static-vs-dynamic-language) |  Differences between statically-typed and dynamically-typed languages |
 | 4 | [Datatypes](#data-types) | Primitive types vs Reference types in Java|
-| 5 | [Operators](#operators)              | Java Operators with examples and types           |
-| 6 | [Type Conversion](#type-conversion)  | Implicit data type conversion and handling       |
-| 7 | [Type Casting](#type-casting)        | Converting data types explicitly in Java         |
-| 8 | [Memory Management](#what-is-memory-management) | Java Memory Model, Stack, Heap, and Garbage Collection |
-| 9 | [Pass by Value vs Pass by Reference](#pass-by-value-vs-pass-by-reference) | Explains how data is passed in Java methods |
-| 10 | [Pitfalls](#pitfalls)                | Common pitfalls like NullPointerException, precision errors |
+| 5 | [Operators](#operators)              | Java Operators with examples and types           | 
+| 6 | [Math Tricks Using Operators](#math-tricks-using-operators)              | simple and powerful math tricks           |  
+| 7 | [Type Conversion](#type-conversion)  | Implicit data type conversion and handling       |
+| 8 | [Type Casting](#type-casting)        | Converting data types explicitly in Java         |
+| 9 | [Memory Management](#what-is-memory-management) | Java Memory Model, Stack, Heap, and Garbage Collection |
+| 10 | [Pass by Value vs Pass by Reference](#pass-by-value-vs-pass-by-reference) | Explains how data is passed in Java methods |
+| 11 | [Pitfalls](#pitfalls)                | Common pitfalls like NullPointerException, precision errors |
 
 ## Programming
 
@@ -298,6 +299,312 @@ Day today = Day.MONDAY;            // Enum reference
 
 ---
 
+## Operators
+
+## ✅ **What are Java Operators?**
+
+**Java Operators** are **symbols** used to **perform operations** on variables and values.
+For example:
+
+```java
+5 + 3  // '+' is an operator, 5 and 3 are operands.
+```
+
+
+## ✅ **Types of Java Operators**
+
+| S.No | Operator Type        | Description                       |
+| ---- | -------------------- | --------------------------------- |
+| 1    | Unary Operators      | Operate on a **single operand**.  |
+| 2    | Arithmetic Operators | Perform **math operations**.      |
+| 3    | Assignment Operators | Assign values to variables.       |
+| 4    | Logical Operators    | Combine **boolean conditions**.   |
+| 5    | Shift Operators      | Shift bits left or right.         |
+| 6    | Bitwise Operators    | Perform bitwise operations.       |
+| 7    | Ternary Operator     | Short-hand for if-else condition. |
+| 8    | Relational Operators | Compare two operands.             |
+
+---
+
+### ✅ 1. **Unary Operators**
+
+* Works on **one operand**.
+* Examples: `++`, `--`, `!`
+
+| Operator | Description                  |
+| -------- | ---------------------------- |
+| `++`     | Increment                    |
+| `--`     | Decrement                    |
+| `!`      | Logical NOT (invert boolean) |
+
+```java
+public class UnaryExample {
+    public static void main(String[] args) {
+        int a = 10;
+        boolean b = true;
+        System.out.println(a++);  // 10
+        System.out.println(++a);  // 12
+        System.out.println(a--);  // 12
+        System.out.println(--a);  // 10
+        System.out.println(!b);   // false
+    }
+}
+```
+
+---
+
+### ✅ 2. **Arithmetic Operators**
+
+* Performs **basic arithmetic**.
+
+| Operator | Meaning        |
+| -------- | -------------- |
+| `+`      | Addition       |
+| `-`      | Subtraction    |
+| `*`      | Multiplication |
+| `/`      | Division       |
+| `%`      | Modulus        |
+
+```java
+public class ArithmeticExample {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+        System.out.println(a + b);  // 30
+        System.out.println(a - b);  // -10
+        System.out.println(a * b);  // 200
+        System.out.println(a / b);  // 0
+        System.out.println(a % b);  // 10
+    }
+}
+```
+
+---
+
+### ✅ 3. **Assignment Operators**
+
+* Assign value to variables.
+
+| Operator | Meaning           |
+| -------- | ----------------- |
+| `=`      | Assign            |
+| `+=`     | Add & assign      |
+| `-=`     | Subtract & assign |
+| `*=`     | Multiply & assign |
+| `/=`     | Divide & assign   |
+| `%=`     | Modulus & assign  |
+
+```java
+public class AssignmentExample {
+    public static void main(String[] args) {
+        int a = 10, b = 20, c;
+        System.out.println(c = a);   // 10
+        System.out.println(b += a);  // 30
+        System.out.println(b -= a);  // 20
+        System.out.println(b *= a);  // 200
+        System.out.println(b /= a);  // 20
+        System.out.println(b %= a);  // 0
+    }
+}
+```
+
+---
+
+### ✅ 4. **Logical Operators**
+
+* Operates on **boolean values**.
+
+| Operator | Meaning     | 
+| -------- | ----------- | 
+| `&&`     | Logical AND | 
+| `\|\|`     | Logical OR| 
+| `!`      | Logical NOT | 
+
+```java
+public class LogicalExample {
+    public static void main(String[] args) {
+        int a = 5;
+        System.out.println(a < 5 && a < 20);  // false
+        System.out.println(a < 5 || a < 20);  // true
+        System.out.println(!(a < 5 && a < 20)); // true
+    }
+}
+```
+
+---
+
+### ✅ 5. **Shift Operators**
+
+* Shifts bits of numbers.
+
+| Operator | Description |
+| -------- | ----------- |
+| `<<`     | Left Shift  |
+| `>>`     | Right Shift |
+
+```java
+public class ShiftExample {
+    public static void main(String[] args) {
+        int a = 58;
+        System.out.println(a << 2);  // 232
+        System.out.println(a >> 2);  // 14
+    }
+}
+```
+
+---
+
+### ✅ 6. **Bitwise Operators**
+
+* Works at the **bit level**.
+
+| Operator | Description | 
+| -------- | ----------- | 
+| `&`      | Bitwise AND | 
+| `\|`       | Bitwise OR| 
+| `^`      | Bitwise XOR | 
+| `~`      | Bitwise NOT | 
+
+```java
+public class BitwiseExample {
+    public static void main(String[] args) {
+        int a = 58, b = 13;
+        System.out.println(a & b);  // 8
+        System.out.println(a | b);  // 63
+        System.out.println(a ^ b);  // 55
+        System.out.println(~a);     // -59
+    }
+}
+```
+
+---
+
+### ✅ 7. **Ternary Operator**
+
+* Short-form **if-else**.
+
+```java
+public class TernaryExample {
+    public static void main(String[] args) {
+        int a = 4, b = 9;
+        int min = (a < b) ? a : b;
+        System.out.println(min); // 4
+    }
+}
+```
+
+---
+
+### ✅ 8. **Relational Operators**
+
+* Compares two values.
+
+| Operator | Meaning               |
+| -------- | --------------------- |
+| `<`      | Less than             |
+| `>`      | Greater than          |
+| `<=`     | Less than or equal    |
+| `>=`     | Greater than or equal |
+| `==`     | Equal to              |
+| `!=`     | Not equal to          |
+
+```java
+public class RelationalExample {
+    public static void main(String[] args) {
+        int a = 10, b = 20;
+        System.out.println(a < b);  // true
+        System.out.println(a > b);  // false
+        System.out.println(a <= b); // true
+        System.out.println(a >= b); // false
+        System.out.println(a == b); // false
+        System.out.println(a != b); // true
+    }
+}
+```
+
+---
+
+## ✅ **Java Operator Precedence and Associativity**
+| S.No | Operator Type  | Operators                          | Precedence | Associativity |
+| ---- | -------------- | ---------------------------------- | ---------- | ------------- |
+| 0    | Parentheses    | `()`                               | Highest    | N/A           |
+| 1    | Postfix        | `expr++`, `expr--`                 | High       | Left to Right |
+| 2    | Unary          | `++`, `--`, `+`, `-`, `~`, `!`     | High       | Right to Left |
+| 3    | Multiplicative | `*`, `/`, `%`                      | Medium     | Left to Right |
+| 4    | Additive       | `+`, `-`                           | Medium     | Left to Right |
+| 5    | Shift          | `<<`, `>>`, `>>>`                  | Medium     | Left to Right |
+| 6    | Relational     | `<`, `>`, `<=`, `>=`, `instanceof` | Medium     | Left to Right |
+| 7    | Equality       | `==`, `!=`                         | Medium     | Left to Right |
+| 8    | Bitwise AND    | `&`                                | Low        | Left to Right |
+| 9    | Bitwise XOR    | `^`                                | Low        | Left to Right |
+| 10   | Bitwise OR     | `\|`                               | Low        | Left to Right |
+| 11   | Logical AND    | `&&`                               | Low        | Left to Right |
+| 12   | Logical OR     | `\|\|`                             | Low        | Left to Right |
+| 13   | Ternary        | `? :`                              | Lower      | Right to Left |
+| 14   | Assignment     | `=`, `+=`, `-=`, etc.              | Lowest     | Right to Left |
+
+
+
+## **Math Tricks Using Operators**
+
+| S.No | Trick / Expression      | Purpose / Meaning                  | Example           |
+| ---- | ----------------------- | ---------------------------------- | ----------------- |
+| 1    | `n % 10`                | Last digit of number               | `123 % 10 = 3`    |
+| 2    | `n / 10`                | Removes last digit                 | `123 / 10 = 12`   |
+| 3    | `n * 10`                | Appends `0` to number              | `25 * 10 = 250`   |
+| 4    | `n * n`                 | Square of number                   | `6 * 6 = 36`      |
+| 5    | `n * n * n`             | Cube of number                     | `3 * 3 * 3 = 27`  |
+| 6    | `n % 2 == 0`            | Check even number                  | `8 % 2 == 0`      |
+| 7    | `n % 2 != 0`            | Check odd number                   | `7 % 2 != 0`      |
+| 8    | `n & 1`                 | 0 = even, 1 = odd (bitwise)        | `7 & 1 = 1`       |
+| 9    | `n * (n + 1) / 2`       | Sum of 1 to n                      | `5*(5+1)/2 = 15`  |
+| 10   | `n * (n - 1) / 2`       | Number of unordered pairs          | `4*(4-1)/2 = 6`   |
+| 11   | `n << 1`                | Multiply by 2 using bit shift      | `5 << 1 = 10`     |
+| 12   | `n >> 1`                | Divide by 2 using bit shift        | `10 >> 1 = 5`     |
+| 13   | `n << k`                | Multiply by `2^k`                  | `3 << 3 = 24`     |
+| 14   | `n >> k`                | Divide by `2^k`                    | `32 >> 2 = 8`     |
+| 15   | `Math.pow(a, b)`        | `a` raised to power `b`            | `Math.pow(2,3)=8` |
+| 16   | `Math.sqrt(n)`          | Square root                        | `Math.sqrt(16)=4` |
+| 17   | `a^b`                   | Toggle bits / XOR of a and b       | `5^3 = 6`         |
+| 18   | `~n`                    | Bitwise NOT (inverts bits)         | `~5 = -6`         |
+| 19   | `n % 9`                 | Digital root / sum of digits mod 9 | `987 % 9 = 6`     |
+| 20   | `(n * 9)`               | Multiplication shortcut for 9      | `7*9 = 63`        |
+| 21   | `n*(n+1)*(2n+1)/6`      | Sum of squares of 1 to n           | `3: 1²+2²+3²=14`  |
+| 22   | `n*(n+1)/2 * n*(n+1)/2` | Sum of cubes of 1 to n             | `3: 1³+2³+3³=36`  |
+
+---
+
+## ✅ **Bonus Java Code Example**
+
+```java
+public class MoreMathTricks {
+    public static void main(String[] args) {
+        int n = 7;
+        System.out.println("Last Digit: " + (n % 10));
+        System.out.println("Remove Last Digit: " + (n / 10));
+        System.out.println("Add Zero at End: " + (n * 10));
+        System.out.println("Is Even? " + (n % 2 == 0));
+        System.out.println("Is Odd? " + (n % 2 != 0));
+        System.out.println("Square: " + (n * n));
+        System.out.println("Cube: " + (n * n * n));
+        System.out.println("Sum 1 to n: " + (n * (n + 1) / 2));
+        System.out.println("Number of Pairs: " + (n * (n - 1) / 2));
+        System.out.println("Multiply by 2: " + (n << 1));
+        System.out.println("Divide by 2: " + (n >> 1));
+        System.out.println("Digital Root (mod 9): " + (n % 9));
+        System.out.println("Bitwise NOT: " + (~n));
+        System.out.println("Sum of Squares 1 to n: " + (n * (n + 1) * (2 * n + 1) / 6));
+        System.out.println("Sum of Cubes 1 to n: " + ((n * (n + 1) / 2) * (n * (n + 1) / 2)));
+    }
+}
+```
+
+
+## ✅ **Conclusion**
+
+Java Operators allow you to **perform a wide variety of tasks**, from basic arithmetic to complex bit manipulation.
+Understanding **precedence** helps to evaluate complex expressions correctly.
+
+---
 
 
 
