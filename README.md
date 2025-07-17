@@ -294,7 +294,7 @@ Day today = Day.MONDAY;            // Enum reference
 
 ### ✅ **Interview Tip**
 
-> 👉 *“In Java, primitive types are for storing simple values directly, whereas reference types store the memory address of more complex data like objects and collections. Understanding this distinction is key to grasping Java’s memory model (stack vs heap).”*
+> 👉 *“In Java, primitive types are for storing simple values directly, whereas reference types store the memory address of more complex data like objects and collections. Understanding this distinction is key to grasping Java’s memory model (stack vs heap).”*.
 
 ---
 
