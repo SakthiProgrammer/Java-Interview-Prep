@@ -607,7 +607,7 @@ Understanding **precedence** helps to evaluate complex expressions correctly.
 ---
 
 
-### ✅ Type Conversion
+### Type Conversion
 
 > **Type Conversion** is the **automatic conversion of a smaller data type to a larger data type** by the **Java compiler**, without requiring explicit instructions from the programmer.
 
