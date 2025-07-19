@@ -261,7 +261,7 @@ Reference types are used to store **complex data structures and objects** such a
 ```java
 String greeting = "Hello, World!";  // String reference
 int[] numbers = {1, 2, 3, 4, 5};    // Array reference
-Car myCar = new Car();             // Class object reference
+Car myCar = new Car();           // Class object reference
 Runnable r = new MyTask();         // Interface implementation
 Day today = Day.MONDAY;            // Enum reference
 ```
