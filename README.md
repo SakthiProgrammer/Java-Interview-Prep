@@ -607,6 +607,73 @@ Understanding **precedence** helps to evaluate complex expressions correctly.
 ---
 
 
+### ✅ Type Conversion
+
+> **Type Conversion** is the **automatic conversion of a smaller data type to a larger data type** by the **Java compiler**, without requiring explicit instructions from the programmer.
+
+This is also called **Widening Conversion** because you're moving from a smaller to a wider (bigger) data type.
+
+### ✅ **Example**
+
+```java
+int a = 50;
+long b = a;     // int is automatically converted to long
+float c = b;    // long is automatically converted to float
+System.out.println(c);  // Output: 50.0
+```
+
+There is **no data loss** here because:
+
+```
+byte → short → int → long → float → double
+```
+
+---
+
+## ✅ **Real-Time Example**
+
+### 1️⃣ **Banking System**
+
+* A customer's **account balance** may be stored in **`double`** (for precision).
+* But the **number of transactions** is a simple **`int`**.
+* When performing calculations, `int` is **automatically converted** to `double`:
+
+```java
+int transactions = 5;
+double balancePerTransaction = 250.75;
+double totalAmount = transactions * balancePerTransaction;  // int to double conversion
+```
+
+### 2️⃣ **Temperature Sensor**
+
+* A **sensor** provides readings in **int** (e.g., `25°C`).
+* For precise calculations in software, it's converted to **double** automatically:
+
+```java
+int temp = 25;
+double preciseTemp = temp;  // converted automatically
+```
+
+### 3️⃣ **E-commerce Price Calculations**
+
+* Items are counted as **`int` quantity**.
+* The **price per item** is a **`double`**.
+* Total price calculation triggers **type conversion**:
+
+```java
+int quantity = 3;
+double pricePerItem = 499.99;
+double totalPrice = quantity * pricePerItem;  // quantity converted to double
+```
+
+---
+
+## ✅ **Summary**
+
+* **Type Conversion** = smaller to larger type (automatic, safe).
+* Useful in real-world systems involving **money, measurement, or scientific computations** where precision is critical.
+
+
 
 
 ### What is Memory Management?
