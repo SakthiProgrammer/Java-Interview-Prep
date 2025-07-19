@@ -446,7 +446,7 @@ public class ShiftExample {
     public static void main(String[] args) {
         int a = 58;
         System.out.println(a << 2);  // 232
-        System.out.println(a >> 2); // 14
+        System.out.println(a >> 2)// 14
     }
 }
 ```
