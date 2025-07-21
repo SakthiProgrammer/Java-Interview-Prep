@@ -54,7 +54,7 @@ At the most basic level, computers only understand machine code, which is made u
 ```java
 public class HelloWorld {
     public static void main(String[] args) {
-        System.out.println("Hello, World!");  // Simple instruction to print text
+        System.out.println("Hello, World!");// Simple instruction to print text
     }
 }
 ```
