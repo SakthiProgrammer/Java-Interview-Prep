@@ -696,13 +696,6 @@ Check completed
 * This is a **classic example of `throw`, `throws`, try-catch-finally, and custom exceptions**.
 
 ---
-Perfect, Ramana! Here's a **challenging scenario** involving:
-
-* `throw` and `throws`
-* a method that is *declared* to throw an exception but is **never called**
-* and **nested try-catch inside a loop**
-
----
 
 ### ✅ **🧪 Test Question: What will be the output of the following code?**
 
@@ -802,6 +795,103 @@ Cleaning up
 * Then "Program completed" is printed.
 
 ---
+
+---
+
+### ✅ **🧪 Test Question: What will be the output of this code?**
+
+```java
+import java.io.*;
+
+class FileProcessor {
+    public void readFile(String fileName) throws FileNotFoundException {
+        if (fileName == null) {
+            throw new NullPointerException("Filename is null");
+        }
+        FileReader reader = new FileReader(fileName);
+        System.out.println("File reading started...");
+    }
+}
+
+public class ExceptionTest {
+    public static void main(String[] args) {
+        FileProcessor fp = new FileProcessor();
+        try {
+            fp.readFile(null);
+            System.out.println("This won't print");
+        } catch (FileNotFoundException e) {
+            System.out.println("File not found!");
+        } catch (NullPointerException e) {
+            System.out.println("Null filename passed");
+        } finally {
+            System.out.println("Cleanup done");
+        }
+        System.out.println("End of program");
+    }
+}
+```
+
+---
+
+### ✅ **Options:**
+
+**A.**
+
+```
+File reading started...
+This won't print
+Cleanup done
+End of program
+```
+
+**B.**
+
+```
+File not found!
+Cleanup done
+End of program
+```
+
+**C.**
+
+```
+Null filename passed
+Cleanup done
+End of program
+```
+
+**D.**
+
+```
+Exception in thread "main" java.io.FileNotFoundException
+```
+
+---
+
+### ✅ **Correct Answer: C**
+
+---
+
+### ✅ **Explanation:**
+
+1. `fp.readFile(null)` is called → `fileName == null` → `throw new NullPointerException(...)`
+2. So, **`FileNotFoundException` is not triggered** because file reading didn't happen.
+3. `catch (NullPointerException e)` catches the exception → prints `"Null filename passed"`
+4. `finally` block always runs → prints `"Cleanup done"`
+5. Then, `"End of program"` prints.
+
+---
+
+### ✅ **Output:**
+
+```
+Null filename passed
+Cleanup done
+End of program
+```
+
+---
+
 
 
 
