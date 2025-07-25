@@ -271,9 +271,11 @@ Java has **two main types** of exceptions:
 ## 🔹 1. **Checked Exceptions (Compile-Time Exceptions)**
 
 ### ✅ What is it?
-
+Checked exceptions are errors that the Java compiler checks while you're writing the code.
+You must handle them using try-catch or throws, or your code won't compile.
 * These are exceptions **checked by the compiler** at compile time.
 * If not handled (using `try-catch` or `throws`), the program will **not compile**.
+
 
 ### 📌 Examples:
 
@@ -302,6 +304,8 @@ public class CheckedExample {
 ## 🔹 2. **Unchecked Exceptions (Runtime Exceptions)**
 
 ### ✅ What is it?
+Unchecked exceptions are errors that happen only while running the program.
+Java does not force you to handle them.
 
 * These occur at **runtime**, not checked at compile time.
 * Program will compile, but may crash at runtime if not handled.
@@ -543,6 +547,265 @@ Program continues...
 ```
 
 ---
+
+### ✅ **🧪 Test Question: What will be the output of the following Java code?**
+
+```java
+public class TestChallenge {
+    public static void main(String[] args) {
+        try {
+            int[] arr = new int[3];
+            arr[5] = 10; // Line A
+            System.out.println("Inside try block");
+        } catch (ArithmeticException e) {
+            System.out.println("Caught ArithmeticException");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Caught ArrayIndexOutOfBoundsException"); // Line B
+        } catch (Exception e) {
+            System.out.println("Caught General Exception");
+        } finally {
+            System.out.println("Finally block executed"); // Line C
+        }
+        System.out.println("Program continues..."); // Line D
+    }
+}
+```
+
+---
+
+### ✅ **Options:**
+
+**A.**
+
+```
+Caught ArrayIndexOutOfBoundsException
+Finally block executed
+Program continues...
+```
+
+**B.**
+
+```
+Caught ArithmeticException
+Finally block executed
+Program continues...
+```
+
+**C.**
+
+```
+Caught General Exception
+Program continues...
+```
+
+**D.**
+
+```
+Caught ArrayIndexOutOfBoundsException
+Program stops
+```
+
+---
+
+### ✅ **Correct Answer: A**
+
+---
+
+### ✅ **Explanation:**
+
+* Line A throws `ArrayIndexOutOfBoundsException` because index 5 does not exist.
+* It's caught in the **second `catch` block**, not the first (`ArithmeticException`) or third (`Exception`).
+* Then, the **`finally` block always executes**, no matter what.
+* After that, the program **continues normally**.
+
+---
+
+### ✅ **🧪 Test Question: What will be the output of the following Java code?**
+
+```java
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+public class VotingTest {
+    public static void checkEligibility(int age) throws InvalidAgeException {
+        if (age < 18) {
+            throw new InvalidAgeException("Not eligible for voting");
+        } else {
+            System.out.println("Eligible to vote");
+        }
+    }
+
+    public static void main(String[] args) {
+        try {
+            checkEligibility(16);  // Line A
+        } catch (InvalidAgeException e) {
+            System.out.println("Caught Exception: " + e.getMessage());  // Line B
+        } finally {
+            System.out.println("Check completed");  // Line C
+        }
+    }
+}
+```
+
+---
+
+### ✅ **Options:**
+
+**A.**
+
+```
+Eligible to vote
+Check completed
+```
+
+**B.**
+
+```
+Caught Exception: Not eligible for voting
+Check completed
+```
+
+**C.**
+
+```
+Exception in thread "main" InvalidAgeException
+```
+
+**D.**
+
+```
+Not eligible for voting
+Eligible to vote
+Check completed
+```
+
+---
+
+### ✅ **Correct Answer: B**
+
+---
+
+### ✅ **Explanation:**
+
+* `checkEligibility(16)` throws a **custom checked exception** (`InvalidAgeException`) because age is less than 18.
+* It's caught in the `catch` block and the message is printed.
+* `finally` block always runs → `"Check completed"` is printed.
+* This is a **classic example of `throw`, `throws`, try-catch-finally, and custom exceptions**.
+
+---
+Perfect, Ramana! Here's a **challenging scenario** involving:
+
+* `throw` and `throws`
+* a method that is *declared* to throw an exception but is **never called**
+* and **nested try-catch inside a loop**
+
+---
+
+### ✅ **🧪 Test Question: What will be the output of the following code?**
+
+```java
+class NetworkException extends Exception {
+    public NetworkException(String message) {
+        super(message);
+    }
+}
+
+public class ServerTest {
+
+    // Method declared with throws but never called
+    public static void connectToServer() throws NetworkException {
+        throw new NetworkException("Failed to connect");
+    }
+
+    public static void main(String[] args) {
+        for (int i = 1; i <= 3; i++) {
+            try {
+                System.out.println("Attempt " + i);
+                if (i == 2) {
+                    throw new ArithmeticException("Math error"); // Only on 2nd attempt
+                }
+                System.out.println("Success in attempt " + i);
+            } catch (ArithmeticException e) {
+                System.out.println("Caught: " + e.getMessage());
+            } finally {
+                System.out.println("Cleaning up for attempt " + i);
+            }
+        }
+
+        System.out.println("Program completed");
+    }
+}
+```
+
+---
+
+### ✅ **Options:**
+
+**A.**
+
+```
+Attempt 1
+Success in attempt 1
+Cleaning up for attempt 1
+Attempt 2
+Caught: Math error
+Cleaning up for attempt 2
+Attempt 3
+Success in attempt 3
+Cleaning up for attempt 3
+Program completed
+```
+
+**B.**
+
+```
+Caught: Math error
+Cleaning up for attempt 2
+Program completed
+```
+
+**C.**
+
+```
+Attempt 2
+Caught: Math error
+Cleaning up for attempt 2
+Program completed
+```
+
+**D.**
+
+```
+Failed to connect
+Caught: NetworkException
+Cleaning up
+```
+
+---
+
+### ✅ **Correct Answer: A**
+
+---
+
+### ✅ **Explanation:**
+
+* The method `connectToServer()` is declared with `throws` and even throws an exception, but it is **never called**, so it has no effect.
+* The loop runs **three times**.
+
+  * Attempt 1: no exception, prints success.
+  * Attempt 2: throws and catches `ArithmeticException`, prints error.
+  * Attempt 3: normal again.
+* The `finally` block runs **every time** after the try-catch.
+* Then "Program completed" is printed.
+
+---
+
+
+
+
 
 
 
