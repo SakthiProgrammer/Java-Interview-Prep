@@ -66,4 +66,485 @@ If the interviewer asks **"Why is exception handling important?"**, say:
 
 > "Exception handling ensures that the application doesn't crash unexpectedly. It helps in showing user-friendly error messages, logging the issue for debugging, and continuing the application flow where possible."
 
+
 ---
+
+## ✅ What is `try-catch` in Java?
+
+* **`try` block**: Code that **might throw an exception** is placed here.
+* **`catch` block**: Code that **handles the exception** is placed here.
+
+It prevents the program from crashing unexpectedly and lets you respond to errors in a user-friendly way.
+
+---
+
+## 🔹 Syntax:
+
+```java
+try {
+    // Code that may throw an exception
+} catch (ExceptionType e) {
+    // Code to handle the exception
+}
+```
+
+---
+
+## ✅ Simple Example: Divide by Zero
+
+```java
+public class TryCatchExample {
+    public static void main(String[] args) {
+        try {
+            int a = 10;
+            int b = 0;
+            int result = a / b; // this line causes an exception
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero.");
+        }
+    }
+}
+```
+
+### 🔍 Output:
+
+```
+Error: Cannot divide by zero.
+```
+
+---
+
+## 🔎 Explanation:
+
+| Code Line                     | What Happens                                          |
+| ----------------------------- | ----------------------------------------------------- |
+| `int result = a / b;`         | Tries to divide by 0 → throws `ArithmeticException`   |
+| `catch (ArithmeticException)` | Catches the error and prints a friendly message       |
+| `System.out.println(...)`     | This message is shown instead of crashing the program |
+
+---
+
+## ✅ Real-Life Analogy:
+
+Think of `try` as saying:
+
+> “Try this task, but if there’s a problem, don’t panic — go to the `catch` and handle it.”
+
+---
+
+## ✅ One More Example: NullPointerException
+
+```java
+public class TryCatchNull {
+    public static void main(String[] args) {
+        try {
+            String name = null;
+            System.out.println(name.length()); // causes NullPointerException
+        } catch (NullPointerException e) {
+            System.out.println("Error: You tried to access something from a null value.");
+        }
+    }
+}
+```
+
+### 🧠 Output:
+
+```
+Error: You tried to access something from a null value.
+---
+
+## ✅ What is `finally` Block in Java?
+
+The `finally` block is a special block in Java that **always executes**, whether:
+
+* an exception is thrown or not,
+* the exception is caught or not,
+* `return` is used in the method.
+
+---
+
+### 🔹 Why use `finally`?
+
+To **perform cleanup** actions like:
+
+* closing files,
+* releasing database connections,
+* cleaning up memory,
+* showing thank-you messages.
+
+---
+
+## ✅ Syntax:
+
+```java
+try {
+    // risky code
+} catch (Exception e) {
+    // exception handling
+} finally {
+    // cleanup code (always runs)
+}
+```
+
+---
+
+## ✅ Example: Division with Cleanup Message
+
+```java
+public class FinallyExample {
+    public static void main(String[] args) {
+        try {
+            int a = 10, b = 0;
+            int result = a / b; // throws ArithmeticException
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error: Cannot divide by zero.");
+        } finally {
+            System.out.println("This will always be printed.");
+        }
+    }
+}
+```
+
+### 🔍 Output:
+
+```
+Error: Cannot divide by zero.  
+This will always be printed.
+```
+
+Even though there is an error and it was caught, the `finally` block **still runs**.
+
+---
+
+## ✅ Example 2: No Exception Happens
+
+```java
+public class FinallyExample2 {
+    public static void main(String[] args) {
+        try {
+            int a = 10, b = 2;
+            int result = a / b;
+            System.out.println("Result: " + result);
+        } catch (ArithmeticException e) {
+            System.out.println("Error occurred.");
+        } finally {
+            System.out.println("Cleanup done in finally block.");
+        }
+    }
+}
+```
+
+### 🔍 Output:
+
+```
+Result: 5  
+Cleanup done in finally block.
+```
+
+---
+
+## ✅ Summary:
+
+| Part      | Runs When           | Purpose                         |
+| --------- | ------------------- | ------------------------------- |
+| `try`     | Normal/risky code   | Code that may cause error       |
+| `catch`   | If exception occurs | Handle error                    |
+| `finally` | Always              | Cleanup, logging, final message |
+
+---
+
+## ✅ Types of Exception in Java?
+
+An **exception** is an unwanted or unexpected event that disrupts the normal flow of a program.
+
+Java has **two main types** of exceptions:
+
+```
+1. Checked Exceptions
+2. Unchecked Exceptions
+```
+
+---
+
+## 🔹 1. **Checked Exceptions (Compile-Time Exceptions)**
+
+### ✅ What is it?
+
+* These are exceptions **checked by the compiler** at compile time.
+* If not handled (using `try-catch` or `throws`), the program will **not compile**.
+
+### 📌 Examples:
+
+* `IOException`
+* `SQLException`
+* `FileNotFoundException`
+* `ClassNotFoundException`
+
+### 🔧 Example:
+
+```java
+import java.io.*;
+
+public class CheckedExample {
+    public static void main(String[] args) throws IOException {
+        FileReader file = new FileReader("test.txt"); // File may not exist
+        file.close();
+    }
+}
+```
+
+> 🔔 Compiler forces us to handle or declare this using `throws`.
+
+---
+
+## 🔹 2. **Unchecked Exceptions (Runtime Exceptions)**
+
+### ✅ What is it?
+
+* These occur at **runtime**, not checked at compile time.
+* Program will compile, but may crash at runtime if not handled.
+
+### 📌 Examples:
+
+* `ArithmeticException`
+* `NullPointerException`
+* `ArrayIndexOutOfBoundsException`
+* `NumberFormatException`
+
+### 🔧 Example:
+
+```java
+public class UncheckedExample {
+    public static void main(String[] args) {
+        int a = 10 / 0; // ArithmeticException at runtime
+        System.out.println(a);
+    }
+}
+```
+
+> 🔔 Compiler does **not** force you to handle it, but you should.
+
+---
+
+## 🔹 3. **Error (Not an Exception, But Still Throwable)**
+
+### ✅ What is it?
+
+* Represents **serious issues** that applications usually **should not try to handle**.
+
+### 📌 Examples:
+
+* `OutOfMemoryError`
+* `StackOverflowError`
+* `VirtualMachineError`
+
+---
+
+## ✅ Exception Class Hierarchy:
+
+```
+               Throwable
+               /       \
+         Exception     Error
+           /     \
+Checked    Runtime (Unchecked)
+Exception   Exception
+```
+
+---
+
+## 🧠 Summary Table:
+
+| Type                | Checked by Compiler | Example                          | When to Handle         |
+| ------------------- | ------------------- | -------------------------------- | ---------------------- |
+| Checked Exception   | ✅ Yes               | IOException, SQLException        | Must be handled        |
+| Unchecked Exception | ❌ No                | ArithmeticException, NullPointer | Optional (but advised) |
+| Error               | ❌ No                | OutOfMemoryError, StackOverflow  | Not handled (serious)  |
+
+---
+
+## ✅ What is a Custom Exception in Java?
+
+A **custom exception** is a user-defined exception that lets you **create your own error types** specific to your application logic.
+
+👉 You create it by **extending** the `Exception` class (for **checked exception**) or `RuntimeException` class (for **unchecked exception**).
+
+---
+
+## 🧱 Steps to Create Custom Exception:
+
+### Step 1: Create your exception class
+
+### Step 2: Use `throw` to throw the exception
+
+### Step 3: Handle it using `try-catch`
+
+---
+
+## ✅ Example: Create a Custom Exception for Cab Booking Age Check
+
+### 🔹 Step 1: Create Custom Exception Class
+
+```java
+// Custom exception by extending Exception (checked exception)
+public class AgeRestrictionException extends Exception {
+    public AgeRestrictionException(String message) {
+        super(message);
+    }
+}
+```
+
+---
+
+### 🔹 Step 2 & 3: Use It in a Real Program
+
+```java
+public class CabBooking {
+
+    public static void main(String[] args) {
+        try {
+            bookCab(15); // age below 18 will trigger custom exception
+        } catch (AgeRestrictionException e) {
+            System.out.println("Booking failed: " + e.getMessage());
+        }
+    }
+
+    public static void bookCab(int age) throws AgeRestrictionException {
+        if (age < 18) {
+            throw new AgeRestrictionException("You must be 18 or older to book a cab.");
+        }
+        System.out.println("Cab booked successfully for age: " + age);
+    }
+}
+```
+
+---
+
+## 🔍 Output:
+
+```
+Booking failed: You must be 18 or older to book a cab.
+```
+
+---
+
+## ✅ When to Use Custom Exceptions?
+
+* When you want to give **meaningful errors** in your application.
+* To **separate business logic errors** from Java's built-in exceptions.
+* For better **code readability and maintainability**.
+
+---
+
+## ✅ Checked vs Unchecked Custom Exception
+
+| Type                | Extend Class               | When It Occurs               |
+| ------------------- | -------------------------- | ---------------------------- |
+| Checked Exception   | `extends Exception`        | Compile-time (must handle)   |
+| Unchecked Exception | `extends RuntimeException` | Runtime (optional to handle) |
+
+### 🔹 Unchecked Example:
+
+```java
+public class AgeRestrictionRuntimeException extends RuntimeException {
+    public AgeRestrictionRuntimeException(String msg) {
+        super(msg);
+    }
+}
+```
+
+Then throw it like:
+
+```java
+throw new AgeRestrictionRuntimeException("Must be 18 or older!");
+```
+
+## Some  simple Java code test for Exception handling
+---
+
+## ✅ 🔹 **Java Code Test Question**
+
+### 🔸🧠 Question:
+
+What will be the **output** of the following Java program?
+
+```java
+public class TestException {
+    public static void main(String[] args) {
+        try {
+            int[] numbers = {1, 2, 3};
+            System.out.println(numbers[3]); // Accessing invalid index
+        } catch (ArithmeticException e) {
+            System.out.println("Arithmetic Exception caught");
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Array Index Out Of Bounds Exception caught");
+        } finally {
+            System.out.println("Finally block executed");
+        }
+        System.out.println("Program continues...");
+    }
+}
+```
+
+---
+
+### 🔸💭 Options:
+
+A)
+
+```
+Arithmetic Exception caught  
+Finally block executed  
+Program continues...
+```
+
+B)
+
+```
+Array Index Out Of Bounds Exception caught  
+Finally block executed  
+Program continues...
+```
+
+C)
+
+```
+Finally block executed  
+Program terminated
+```
+
+D)
+
+```
+Compilation error
+```
+
+---
+
+### ✅ 🟩 **Correct Answer: B**
+
+### 🔍 Explanation:
+
+* `numbers[3]` causes `ArrayIndexOutOfBoundsException`
+* It's caught in the corresponding `catch` block
+* `finally` block **always runs**
+* Program continues normally
+
+---
+
+## 🎯 Output:
+
+```
+Array Index Out Of Bounds Exception caught  
+Finally block executed  
+Program continues...
+```
+
+---
+
+
+
+
+
